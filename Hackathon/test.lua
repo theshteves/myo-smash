@@ -2,7 +2,7 @@ scriptId = 'com.thalmic.examples.myfirstscript'
 scriptTitle = "My First Script"
 scriptDetailsUrl = ""
 
-myo.setLockingPolicy("none")
+myo.setLockingPolicy("standard")
 
 function onForegroundWindowChange(app, title)
 	myo.debug("onForegroundWindowChange: " .. app .. ", " .. title)
@@ -25,12 +25,14 @@ function onPoseEdge(pose, edge)
 end
  
 function Falcon()
+	myo.setLockingPolicy("none")
 	myo.debug("1")
 	myo.vibrate("short")	
 	myo.keyboard("1","press")
 end
 
 function Punch()
+	myo.setLockingPolicy("standard")
 	myo.debug("2")
 	myo.vibrate("short")
 	myo.keyboard("2","down")
