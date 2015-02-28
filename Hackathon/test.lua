@@ -2,7 +2,7 @@ scriptId = 'com.thalmic.examples.myfirstscript'
 scriptTitle = "My First Script"
 scriptDetailsUrl = ""
 
-myo.setLockingPolicy("standard")
+myo.setLockingPolicy("none")
 
 function onForegroundWindowChange(app, title)
 	myo.debug("onForegroundWindowChange: " .. app .. ", " .. title)
