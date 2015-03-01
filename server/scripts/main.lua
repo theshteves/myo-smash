@@ -27,7 +27,8 @@ function onPoseEdge(pose, edge)
 		elseif ((wavein_check) and (falcon_check == false) and (pose == "waveIn")) then
 			ComeOn()
 		elseif ((wavein_check == false) and (falcon_check == false) and (pose == "waveOut")) then
-			Show()
+			onWaveOut()
+
 		end
 	end
 end
@@ -61,15 +62,14 @@ function ComeOn()
 	myo.vibrate("short")
 	myo.keyboard("4","down")
 	wavein_check = false
-	file = io.open("", "r")
 end
 
-function Show()
-	myo.setLockingPolicy("standard")
-	myo.debug("5")
-	myo.vibrate("short")
-	myo.keyboard("5","down")
-end
+--function Show()
+--	myo.setLockingPolicy("standard")
+--	myo.debug("5")
+--	myo.vibrate("short")
+--	myo.keyboard("5","down")
+--end
 
 function WinTheme()
 	myo.setLockingPolicy("standard")
@@ -77,3 +77,21 @@ function WinTheme()
 	myo.vibrate("short")
 	myo.keyboard("6","down")
 end
+
+function InfoUpdate()
+	x,y,z = myo.getOrientationWorld()
+	current = myo.getTimeMilliseconds - init
+	file.write(x,y,z,current)
+end
+
+--function onWaveOut()
+--	file = assert(io.output('gesture.txt'))
+--	myo.setLockingPolicy("none")
+--	init = myo.getTimeMilliseconds()
+--	while true do
+--	      InfoUpdate()
+--	      if () then
+--	            file:close()
+--	      	    break
+--	end
+--end
