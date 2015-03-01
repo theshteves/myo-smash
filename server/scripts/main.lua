@@ -48,6 +48,8 @@ function onPoseEdge(pose, edge)
 			Thoron()
 		elseif ((char_check2) and (falcon_check == false) and (charge_check == false) and (pose == "fingersSpread")) then
 			ArcFire()	
+		elseif ((char_check2) and (falcon_check == false) and (charge_check == false) and (pose == "waveIn")) then
+			Nosferatu()	
 		end
 	end
 end
@@ -142,4 +144,11 @@ function ArcFire()
 	myo.debug("0")
 	myo.vibrate("short")
 	myo.keyboard("0","down")
+end
+
+function Nosferatu()
+	myo.setLockingPolicy("standard")
+	myo.debug("minus")
+	myo.vibrate("short")
+	myo.keyboard("minus","down")
 end
