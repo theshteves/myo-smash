@@ -4,7 +4,7 @@ scriptDetailsUrl = ""
 
 myo.setLockingPolicy("standard")
 check = false
-1111111121111111112311111111
+
 function onForegroundWindowChange(app, title)
 	myo.debug("onForegroundWindowChange: " .. app .. ", " .. title)
 	--if (title == "myo-smash") then
