@@ -27,8 +27,12 @@ function onPoseEdge(pose, edge)
 		elseif ((wavein_check) and (falcon_check == false) and (pose == "waveIn")) then
 			ComeOn()
 		elseif ((wavein_check == false) and (falcon_check == false) and (pose == "waveOut")) then
+<<<<<<< HEAD:server/scripts/main.lua
 			onWaveOut()
 
+=======
+			Show()
+>>>>>>> parent of 9b5314d... poop:scripts/test.lua
 		end
 	end
 end
@@ -64,12 +68,12 @@ function ComeOn()
 	wavein_check = false
 end
 
---function Show()
---	myo.setLockingPolicy("standard")
---	myo.debug("5")
---	myo.vibrate("short")
---	myo.keyboard("5","down")
---end
+function Show()
+	myo.setLockingPolicy("standard")
+	myo.debug("5")
+	myo.vibrate("short")
+	myo.keyboard("5","down")
+end
 
 function WinTheme()
 	myo.setLockingPolicy("standard")
@@ -77,6 +81,7 @@ function WinTheme()
 	myo.vibrate("short")
 	myo.keyboard("6","down")
 end
+<<<<<<< HEAD:server/scripts/main.lua
 
 function InfoUpdate()
 	x,y,z = myo.getOrientationWorld()
@@ -95,3 +100,5 @@ end
 --	      	    break
 --	end
 --end
+=======
+>>>>>>> parent of 9b5314d... poop:scripts/test.lua
