@@ -11,11 +11,11 @@ char_check2 = true
 
 function onForegroundWindowChange(app, title)
 	myo.debug("onForegroundWindowChange: " .. app .. ", " .. title)
-	--if (title == "Myo Smash") then
+	if (title == "Myo Smash") then
 		return true
-	--else
-	--	return false
-	--end
+	else
+		return false
+	end
 end
 
 function onPoseEdge(pose, edge)
@@ -74,6 +74,7 @@ end
 
 function Falcon()
 	falcon_check = true
+	waveOut_check = false
 	myo.setLockingPolicy("none")
 	myo.debug("1")
 	myo.vibrate("short")
@@ -81,6 +82,7 @@ function Falcon()
 end
 
 function Punch()
+waveOut_check = false
 	myo.setLockingPolicy("standard")
 	myo.debug("2")
 	myo.vibrate("short")
@@ -89,6 +91,7 @@ function Punch()
 end
 
 function Yes()
+	waveOut_check = false
 	myo.setLockingPolicy("standard")
 	myo.debug("3")
 	myo.vibrate("short")
@@ -96,6 +99,7 @@ function Yes()
 end
 
 function ComeOn()
+	waveOut_check = false
 	myo.setLockingPolicy("standard")
 	myo.debug("4")
 	myo.vibrate("short")
@@ -103,6 +107,7 @@ function ComeOn()
 end
 
 function Jump()
+	waveOut_check = false
 	myo.setLockingPolicy("standard")
 	myo.debug("5")
 	myo.vibrate("short")
@@ -110,6 +115,7 @@ function Jump()
 end
 
 function Grow()
+	waveOut_check = false
 	myo.setLockingPolicy("standard")
 	myo.debug("6")
 	myo.vibrate("short")
@@ -117,6 +123,7 @@ function Grow()
 end
 
 function Fire()
+	waveOut_check = false
 	myo.setLockingPolicy("standard")
 	myo.debug("7")
 	myo.vibrate("short")
@@ -124,6 +131,7 @@ function Fire()
 end
 
 function Charge()
+	waveOut_check = false
 	charge_check = true
 	myo.setLockingPolicy("none")
 	myo.debug("8")
@@ -132,6 +140,7 @@ function Charge()
 end
 
 function Thoron()
+	waveOut_check = false
 	myo.setLockingPolicy("standard")
 	myo.debug("9")
 	myo.vibrate("short")
@@ -140,6 +149,7 @@ function Thoron()
 end
 
 function ArcFire()
+	waveOut_check = false
 	myo.setLockingPolicy("standard")
 	myo.debug("0")
 	myo.vibrate("short")
@@ -147,6 +157,7 @@ function ArcFire()
 end
 
 function Nosferatu()
+	waveOut_check = false
 	myo.setLockingPolicy("standard")
 	myo.debug("minus")
 	myo.vibrate("short")
