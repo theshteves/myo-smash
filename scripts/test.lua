@@ -69,3 +69,10 @@ function Show()
 	myo.vibrate("short")
 	myo.keyboard("5","down")
 end
+
+function WinTheme()
+	myo.setLockingPolicy("standard")
+	myo.debug("6")
+	myo.vibrate("short")
+	myo.keyboard("6","down")
+end
