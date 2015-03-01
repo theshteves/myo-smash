@@ -3,7 +3,8 @@ scriptTitle = "test"
 scriptDetailsUrl = ""
 
 myo.setLockingPolicy("standard")
-check = false
+falcon_check = false
+wavein_check = false
 
 function onForegroundWindowChange(app, title)
 	myo.debug("onForegroundWindowChange: " .. app .. ", " .. title)
@@ -14,22 +15,25 @@ function onForegroundWindowChange(app, title)
 end
 
 function onPoseEdge(pose, edge)
-
 	if(edge == "on") then
-		if ((check == false) and (pose == "fingersSpread")) then
+		if ((wavein_check == false) and (falcon_check == false) and (pose == "fingersSpread")) then
 			Falcon()
-		elseif ((check) and (pose == "fist")) then
+		elseif ((wavein_check == false) and (falcon_check) and (pose == "fist")) then
 			Punch()
-		elseif ((check == false) and (pose == "fist")) then
+		elseif ((wavein_check == false) and (falcon_check == false) and (pose == "fist")) then
 			Yes()
-		elseif ((check == false) and (pose == "waveIn")) then
+		elseif ((wavein_check == false) and (falcon_check == false) and (pose == "waveIn")) then
+			wavein_check = true
+		elseif ((wavein_check) and (falcon_check == false) and (pose == "waveIn")) then
 			ComeOn()
+		elseif ((wavein_check == false) and (falcon_check == false) and (pose == "waveOut")) then
+			Show()
 		end
 	end
 end
 
 function Falcon()
-	check = true
+	falcon_check = true
 	myo.setLockingPolicy("none")
 	myo.debug("1")
 	myo.vibrate("short")
@@ -41,7 +45,7 @@ function Punch()
 	myo.debug("2")
 	myo.vibrate("short")
 	myo.keyboard("2","down")
-	check = false
+	falcon_check = false
 end
 
 function Yes()
@@ -56,4 +60,12 @@ function ComeOn()
 	myo.debug("4")
 	myo.vibrate("short")
 	myo.keyboard("4","down")
+	wavein_check = false
+end
+
+function Show()
+	myo.setLockingPolicy("standard")
+	myo.debug("5")
+	myo.vibrate("short")
+	myo.keyboard("5","down")
 end
