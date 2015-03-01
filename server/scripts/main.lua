@@ -4,7 +4,7 @@ scriptDetailsUrl = ""
 
 myo.setLockingPolicy("standard")
 falcon_check = false
-wavein_check = false
+char_check = true
 
 function onForegroundWindowChange(app, title)
 	myo.debug("onForegroundWindowChange: " .. app .. ", " .. title)
@@ -16,20 +16,37 @@ end
 
 function onPoseEdge(pose, edge)
 	if(edge == "on") then
-		if ((wavein_check == false) and (falcon_check == false) and (pose == "fingersSpread")) then
-			Falcon()
-		elseif ((wavein_check == false) and (falcon_check) and (pose == "fist")) then
-			Punch()
-		elseif ((wavein_check == false) and (falcon_check == false) and (pose == "fist")) then
-			Yes()
-		elseif ((wavein_check == false) and (falcon_check == false) and (pose == "waveIn")) then
-			wavein_check = true
-		elseif ((wavein_check) and (falcon_check == false) and (pose == "waveIn")) then
-			ComeOn()
-		elseif ((wavein_check == false) and (falcon_check == false) and (pose == "waveOut")) then
+		if (pose == "waveOut") then
 			onWaveOut()
-
+		elseif ((char_check) and (falcon_check == false) and (pose == "fingersSpread")) then
+			Falcon()
+		elseif ((char_check) and (falcon_check) and (pose == "fist")) then
+			Punch()
+		elseif ((char_check) and (falcon_check == false) and (pose == "fist")) then
+			Yes()
+		elseif ((char_check) and (falcon_check == false) and (pose == "waveIn")) then
+			ComeOn()
+			
+			
+		elseif ((char_check == false) and (falcon_check == false) and (pose == "fist")) then
+			Jump()
+		elseif ((char_check == false) and (falcon_check == false) and (pose == "waveIn")) then
+			Grow()
+		elseif ((char_check == false) and (falcon_check == false) and (pose == "fingersSpread")) then
+			Fire()
 		end
+	end
+end
+
+function onWaveOut()
+	if (char_check) then
+		char_check = false
+		myo.keyboard("m","down")
+		myo.debug("m")
+	else
+		char_check = true
+		myo.keyboard("f","down")
+		myo.debug("f")
 	end
 end
 
@@ -61,37 +78,25 @@ function ComeOn()
 	myo.debug("4")
 	myo.vibrate("short")
 	myo.keyboard("4","down")
-	wavein_check = false
 end
 
---function Show()
---	myo.setLockingPolicy("standard")
---	myo.debug("5")
---	myo.vibrate("short")
---	myo.keyboard("5","down")
---end
+function Jump()
+	myo.setLockingPolicy("standard")
+	myo.debug("5")
+	myo.vibrate("short")
+	myo.keyboard("5","down")
+end
 
-function WinTheme()
+function Grow()
 	myo.setLockingPolicy("standard")
 	myo.debug("6")
 	myo.vibrate("short")
 	myo.keyboard("6","down")
 end
 
-function InfoUpdate()
-	x,y,z = myo.getOrientationWorld()
-	current = myo.getTimeMilliseconds - init
-	file.write(x,y,z,current)
+function Fire()
+	myo.setLockingPolicy("standard")
+	myo.debug("7")
+	myo.vibrate("short")
+	myo.keyboard("7","down")
 end
-
---function onWaveOut()
---	file = assert(io.output('gesture.txt'))
---	myo.setLockingPolicy("none")
---	init = myo.getTimeMilliseconds()
---	while true do
---	      InfoUpdate()
---	      if () then
---	            file:close()
---	      	    break
---	end
---end
