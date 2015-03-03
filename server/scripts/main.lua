@@ -6,12 +6,10 @@ myo.setLockingPolicy("standard")
 falcon_check = false
 charge_check = false
 waveOut_check = false
-char_check1 = true
-char_check2 = true
-
+character = 'm'
 function onForegroundWindowChange(app, title)
 	myo.debug("onForegroundWindowChange: " .. app .. ", " .. title)
-	if (title == "Myo Smash") then
+	if (title == "Myo Smash Soundboard") then
 		return true
 	else
 		return false
@@ -20,54 +18,55 @@ end
 
 function onPoseEdge(pose, edge)
 	if(edge == "on") then
-		if ((pose == "waveOut") and (waveOut_check == false) and (falcon_check == false)) then
+		if ((pose == "waveOut") and (waveOut_check == false) and (charge_check == false) and (falcon_check == false)) then
 			waveOut_check = true
-		elseif ((pose == "waveOut") and (waveOut_check == true) and (falcon_check == false)) then
+		elseif ((pose == "waveOut") and (waveOut_check == true) and (charge_check == false) and (falcon_check == false)) then
 			onWaveOut()
-		elseif ((char_check2 == false) and (char_check1) and (falcon_check == false) and (charge_check == false) and (pose == "fingersSpread")) then
+			
+			
+		elseif ((charachter = 'f') and (falcon_check == false) and (pose == "fingersSpread")) then
 			Falcon()
 		elseif ((falcon_check) and (pose == "fist")) then
 			Punch()
-		elseif ((char_check2 == false) and (char_check1) and (falcon_check == false) and (charge_check == false) and (pose == "fist")) then
+		elseif ((charachter = 'f') and (falcon_check == false) and (pose == "fist")) then
 			Yes()
-		elseif ((char_check2 == false) and (char_check1) and (falcon_check == false) and (charge_check == false) and (pose == "waveIn")) then
+		elseif ((charachter = 'f') and (falcon_check == false) and (pose == "waveIn")) then
 			ComeOn()
 			
 			
-		elseif ((char_check2 == false) and (char_check1 == false) and (falcon_check == false) and (charge_check == false) and (pose == "fist")) then
+		elseif ((charachter = 'm') and (pose == "fist")) then
 			Jump()
-		elseif ((char_check2 == false) and (char_check1 == false) and (falcon_check == false) and (charge_check == false) and (pose == "waveIn")) then
+		elseif ((charachter = 'm') and (pose == "waveIn")) then
 			Grow()
-		elseif ((char_check2 == false) and (char_check1 == false) and (falcon_check == false) and (charge_check == false) and (pose == "fingersSpread")) then
+		elseif ((charachter = 'm') and (pose == "fingersSpread")) then
 			Fire()
 		
 		
-		elseif ((char_check2) and (falcon_check == false) and (charge_check == false) and (pose == "fist")) then
+		elseif ((charachter = 'r') and (charge_check == false) and (pose == "fist")) then
 			Charge()
-		elseif ((char_check2) and (falcon_check == false) and (charge_check == true) and (pose == "fingersSpread")) then
+		elseif ((charge_check) and (pose == "fingersSpread")) then
 			Thoron()
-		elseif ((char_check2) and (falcon_check == false) and (charge_check == false) and (pose == "fingersSpread")) then
+		elseif ((charachter = 'r') and (charge_check == false) and (pose == "fingersSpread")) then
 			ArcFire()	
-		elseif ((char_check2) and (falcon_check == false) and (charge_check == false) and (pose == "waveIn")) then
+		elseif ((charachter = 'r') and (charge_check == false) and (pose == "waveIn")) then
 			Nosferatu()	
 		end
 	end
 end
 
 function onWaveOut()
-	if (char_check2) then 
-		char_check2 = false
-		char_check1 = false
-		myo.keyboard("m","down")
-		myo.debug("m")
-	elseif (char_check1) then
-		char_check2 = true
+	if (charachter = 'm') then 
+		charachter = 'f'
+		myo.keyboard("f","down")
+		myo.debug("f")
+	elseif (charachter = 'f') then
+		charachter = 'r'
 		myo.keyboard("r","down")
 		myo.debug("r")
 	else
-		char_check1 = true
-		myo.keyboard("f","down")
-		myo.debug("f")
+		charachter = 'm'
+		myo.keyboard("m","down")
+		myo.debug("m")
 	end
 	waveOut_check = false
 end
@@ -82,7 +81,7 @@ function Falcon()
 end
 
 function Punch()
-waveOut_check = false
+	waveOut_check = false
 	myo.setLockingPolicy("standard")
 	myo.debug("2")
 	myo.vibrate("short")
